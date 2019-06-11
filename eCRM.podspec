@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-  s.name             = 'eCRMSDK'
-  s.version          = '0.0.2'
+  s.name             = 'eCRM'
+  s.version          = '0.0.3'
   s.summary          = 'Use SDK for detect face'
   s.description      = 'Use SDK for detect face. This used for almost faces'
   s.homepage         = 'https://github.com/facecrm/facecrm-ios-sdk'
@@ -12,10 +12,15 @@ Pod::Spec.new do |s|
   s.source           = { :http => 'https://github.com/facecrm/facecrm-ios-sdk/archive/' + s.version.to_s + '.zip' }   
   s.platform         = :ios
   s.ios.deployment_target = '10.0'
+
   s.ios.vendored_frameworks = 'eCRM.framework'
+  #s.ios.source_files        = [
+  #  'eCRM.framework/Headers/*.h', 
+  #  'eCRM.framework/Headers/*.swift'
+  #]
+  #s.ios.public_header_files = 'eCRM.framework/Headers/*.h'
 
-
-  # s.swift_version    = '4.2'
+  s.swift_version    = '4.2'
 
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'  
