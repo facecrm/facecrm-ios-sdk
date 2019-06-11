@@ -1,0 +1,11 @@
+framework module eCRM {
+  umbrella header "eCRM.h"
+
+  export *
+  module * { export * }
+}
+
+module eCRM.Swift {
+    header "eCRM-Swift.h"
+    requires objc
+}
