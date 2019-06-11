@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name             = 'eCRMSDK'
   s.version          = '0.0.1'
   s.summary          = 'Use SDK for detect face'
-  s.description      = 'Use SDK for detect face. This used for almost user's face'
+  s.description      = 'Use SDK for detect face. This used for almost faces'
   s.homepage         = 'https://github.com/facecrm/facecrm-ios-sdk'
   
   s.author           = { 'Michael Thompson' => 'hoangsonit1607@gmail.com' }
