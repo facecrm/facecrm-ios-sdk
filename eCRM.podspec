@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'eCRM'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'Use SDK for detect face'
   s.description      = 'Use SDK for detect face. This used for almost faces'
   s.homepage         = 'https://github.com/facecrm/facecrm-ios-sdk'
@@ -9,11 +9,13 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'BSD', :file => 'LICENSE' }
   
   
-  s.source           = { :http => 'https://github.com/facecrm/facecrm-ios-sdk/archive/' + s.version.to_s + '.zip' }   
+  s.source           = { :git => "https://github.com/facecrm/facecrm-ios-sdk.git", :tag => s.version.to_s }   
   s.platform         = :ios
   s.ios.deployment_target = '10.0'
 
   s.ios.vendored_frameworks = 'eCRM.framework'
+
+  #s.source           = { :http => 'https://github.com/facecrm/facecrm-ios-sdk/archive/' + #s.version.to_s + '.zip' }  
   #s.ios.source_files        = [
   #  'eCRM.framework/Headers/*.h', 
   #  'eCRM.framework/Headers/*.swift'
