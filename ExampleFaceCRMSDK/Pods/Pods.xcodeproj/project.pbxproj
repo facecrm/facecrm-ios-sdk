@@ -74,21 +74,19 @@
 		0D01BA8472F25D39F718F71557EDC8DD /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		1C15C076B531E2E7744C358418A0C0B5 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		207C659E18AF74D988D52D58BC1E1D50 /* Pods-ExampleFaceCRMSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ExampleFaceCRMSDK-dummy.m"; sourceTree = "<group>"; };
-		2299FF8E6B23FD4BF81435404F41A594 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		32C28BC2F6EEC879CE576601C1B67111 /* FaceCRM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FaceCRM.framework; sourceTree = "<group>"; };
 		32DB5272AD01ECD0B09A86818A7754C4 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		33115EC2A5164913C68F8BD170389EEE /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		333D229FADA94B3E366611BC489E7DB4 /* FaceCRM.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = FaceCRM.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		341BDAD0026CDA8E7BCE35AC122E1C8C /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		39D1EEB0677473645B076E128743FF22 /* FaceCRM.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FaceCRM.xcconfig; sourceTree = "<group>"; };
 		3D7E25E371731FAE44F46A9F392CB5D5 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		4097DD3E5B6BEC48D01136E8497A01B3 /* FaceCRM.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = FaceCRM.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6273534F8BE8787AF54BFA531F2BAC81 /* Pods-ExampleFaceCRMSDK-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ExampleFaceCRMSDK-acknowledgements.markdown"; sourceTree = "<group>"; };
 		68CA050BC7EEAFC360736A2D2B7A91DA /* Pods-ExampleFaceCRMSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExampleFaceCRMSDK.debug.xcconfig"; sourceTree = "<group>"; };
-		7103A7C81AAABA6F8B011C6466B1E515 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		75C759635F88377BD7E2DEDE04C23C62 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		7B03859BDC36782899379E222720A297 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		7F434BE0720BA229B4F76D9DEAFD974B /* FaceCRM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FaceCRM.framework; sourceTree = "<group>"; };
+		86374A4B7D2AAE450D72CF25E3194E8B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		8D5A0E300C04A6DF88D620788FE38780 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		985417470B9341C92A5160D4B2FF2B08 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		9D59E1AD3CC394A93392FF3DC8CF2961 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
@@ -97,6 +95,8 @@
 		AFF7F7716086D54E6308EE52C8227B87 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		B06639F7A76DB8A9D0D0E41CDD7A6684 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		B0FA6468E709640A74938274F9B9563A /* Pods-ExampleFaceCRMSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExampleFaceCRMSDK.release.xcconfig"; sourceTree = "<group>"; };
+		B762494D29C6FA95D4CD86D6FDAED9FE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		BBF2A4173DA66B6899CBEB86F5D24F81 /* FaceCRM.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FaceCRM.xcconfig; sourceTree = "<group>"; };
 		BC81B337E21A58DB04AEDDCA06AC9AFF /* Pods-ExampleFaceCRMSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ExampleFaceCRMSDK-umbrella.h"; sourceTree = "<group>"; };
 		BFCE3D7EDCA41F256D471B40BBFD3FCE /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		C4453BE339B79900FDC53E34FE5589CB /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
@@ -133,33 +133,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C09CE2D0951ADBF4EFFF130F23CC620 /* FaceCRM */ = {
+		00A112F3FC7E240DCA4BDFC957BC52F3 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				B6BFAD192496D916B764BBCBE2BA83BC /* Frameworks */,
-				51F1B401F8B59701EAC0876220931F7E /* Pod */,
-				85B17B221F2D17CA930A01BFFE9D6D3B /* Support Files */,
+				BBF2A4173DA66B6899CBEB86F5D24F81 /* FaceCRM.xcconfig */,
 			);
-			name = FaceCRM;
-			path = /Volumes/data/Work/iOSPublish;
-			sourceTree = "<absolute>";
+			name = "Support Files";
+			path = "ExampleFaceCRMSDK/Pods/Target Support Files/FaceCRM";
+			sourceTree = "<group>";
 		};
 		3377F99FC04D98C4AFBFEE8F292AD5A0 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0C09CE2D0951ADBF4EFFF130F23CC620 /* FaceCRM */,
+				6BF702F131395FC2E25501DDC0E3AA7E /* FaceCRM */,
 			);
 			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		51F1B401F8B59701EAC0876220931F7E /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				333D229FADA94B3E366611BC489E7DB4 /* FaceCRM.podspec */,
-				7103A7C81AAABA6F8B011C6466B1E515 /* LICENSE */,
-				2299FF8E6B23FD4BF81435404F41A594 /* README.md */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 		5B93DB902B202B2C3413DB94751D5888 /* Pods-ExampleFaceCRMSDK */ = {
@@ -193,6 +181,17 @@
 			path = "../Target Support Files/Alamofire";
 			sourceTree = "<group>";
 		};
+		6BF702F131395FC2E25501DDC0E3AA7E /* FaceCRM */ = {
+			isa = PBXGroup;
+			children = (
+				910F820FAD84F1AEB0110267C37DF52F /* Frameworks */,
+				C20C11D49EA330773916C8C3983E8774 /* Pod */,
+				00A112F3FC7E240DCA4BDFC957BC52F3 /* Support Files */,
+			);
+			name = FaceCRM;
+			path = /Volumes/data/Work/iOSPublish;
+			sourceTree = "<absolute>";
+		};
 		714D418798ED40519C05E1906EDB8272 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,21 +209,20 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		85B17B221F2D17CA930A01BFFE9D6D3B /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				39D1EEB0677473645B076E128743FF22 /* FaceCRM.xcconfig */,
-			);
-			name = "Support Files";
-			path = "ExampleeCRMSDK/Pods/Target Support Files/FaceCRM";
-			sourceTree = "<group>";
-		};
 		90FDDC7F5D24472360CA259A8D40AE98 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				ABBD6121E62B33A53CF07892A75F2030 /* Alamofire */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		910F820FAD84F1AEB0110267C37DF52F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F434BE0720BA229B4F76D9DEAFD974B /* FaceCRM.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		ABBD6121E62B33A53CF07892A75F2030 /* Alamofire */ = {
@@ -253,20 +251,22 @@
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
-		B6BFAD192496D916B764BBCBE2BA83BC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				32C28BC2F6EEC879CE576601C1B67111 /* FaceCRM.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		C20C11D49EA330773916C8C3983E8774 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				4097DD3E5B6BEC48D01136E8497A01B3 /* FaceCRM.podspec */,
+				B762494D29C6FA95D4CD86D6FDAED9FE /* LICENSE */,
+				86374A4B7D2AAE450D72CF25E3194E8B /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -493,7 +493,7 @@
 		};
 		0CA9A8A959C28F8AF402DA83CE45D6FC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39D1EEB0677473645B076E128743FF22 /* FaceCRM.xcconfig */;
+			baseConfigurationReference = BBF2A4173DA66B6899CBEB86F5D24F81 /* FaceCRM.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -705,7 +705,7 @@
 		};
 		B50FB6758C2EEC1012EBF61F85D55306 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39D1EEB0677473645B076E128743FF22 /* FaceCRM.xcconfig */;
+			baseConfigurationReference = BBF2A4173DA66B6899CBEB86F5D24F81 /* FaceCRM.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
