@@ -1,0 +1,11 @@
+framework module FaceCRM {
+  umbrella header "FaceCRM.h"
+
+  export *
+  module * { export * }
+}
+
+module FaceCRM.Swift {
+    header "FaceCRM-Swift.h"
+    requires objc
+}
