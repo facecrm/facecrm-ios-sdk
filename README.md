@@ -36,13 +36,12 @@ github "facecrm/facecrm-ios-sdk"
 In Xcode project, select your target and drag file eCRM.framework to both `Embedded Binaries` and `Linked Frameworks and Libraries`
 
 ## Usage
-
-### Import SDK
+### Import SDK
 ```swift
 import FaceCRM
 ```
 
-### Detect face 
+### Detect face 
 Implement in 3 steps:
 1. Add camera view into an UIViewController and start to detect.
 2. Listen the detected results via events.
@@ -96,7 +95,7 @@ errorMessage: error message is returned from FaceCRM system.
 FaceCRMSDK.shared.stopCamera()
 ```
 
-### Register faces
+### Register faces
 Implement in 5 steps:
 1. Add camera view into an UIViewController and start to capture faces.
 2. You will decide what face is captured for next step register
@@ -162,5 +161,5 @@ FaceCRMSDK.shared.stopCamera()
 The sample app demonstrates the use of the FaceCRM iOS client library. The sample shows scenarios face detection and face registration. [See SAMPLE](https://github.com/facecrm/facecrm-ios-sdk/blob/master/LICENSE) for details.
 
 ## License
-
 FaceCRM is released under the BSD 2 license. [See LICENSE](https://github.com/facecrm/facecrm-ios-sdk/blob/master/LICENSE) for details.
+
