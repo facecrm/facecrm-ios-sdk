@@ -47,7 +47,7 @@ Implement in 3 steps:
 2. Listen the detected results via events.
 3. Stop and remove camera view in UIViewController if you do not want to continue detect.
 
-#### 1. Add camera and start to detect
+#### 1. Add camera and start to detect
 ```swift
 FaceCRMSDK.shared.startDetectByCamera(rect, containerView)
 ```
@@ -161,5 +161,6 @@ FaceCRMSDK.shared.stopCamera()
 The sample app demonstrates the use of the FaceCRM iOS client library. The sample shows scenarios face detection and face registration. [See SAMPLE](https://github.com/facecrm/facecrm-ios-sdk/blob/master/LICENSE) for details.
 
 ## License
+
 FaceCRM is released under the BSD 2 license. [See LICENSE](https://github.com/facecrm/facecrm-ios-sdk/blob/master/LICENSE) for details.
 
