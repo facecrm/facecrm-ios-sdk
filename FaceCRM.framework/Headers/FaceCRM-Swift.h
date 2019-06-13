@@ -201,10 +201,10 @@ SWIFT_CLASS("_TtC7FaceCRM11APUserModel")
 
 @class UIView;
 
-SWIFT_CLASS("_TtC7FaceCRM10FaceCRMSDK")
-@interface FaceCRMSDK : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRMSDK * _Nonnull shared;)
-+ (FaceCRMSDK * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS("_TtC7FaceCRM7FaceCRM")
+@interface FaceCRM : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRM * _Nonnull shared;)
++ (FaceCRM * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 - (void)setDetectDuration:(NSInteger)seconds;
@@ -229,7 +229,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRMSDK *
 @class AVCaptureOutput;
 @class AVCaptureConnection;
 
-@interface FaceCRMSDK (SWIFT_EXTENSION(FaceCRM)) <AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM)) <AVCaptureVideoDataOutputSampleBufferDelegate>
 - (void)captureOutput:(AVCaptureOutput * _Nonnull)output didOutputSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer fromConnection:(AVCaptureConnection * _Nonnull)connection;
 @end
 
@@ -446,10 +446,10 @@ SWIFT_CLASS("_TtC7FaceCRM11APUserModel")
 
 @class UIView;
 
-SWIFT_CLASS("_TtC7FaceCRM10FaceCRMSDK")
-@interface FaceCRMSDK : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRMSDK * _Nonnull shared;)
-+ (FaceCRMSDK * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS("_TtC7FaceCRM7FaceCRM")
+@interface FaceCRM : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRM * _Nonnull shared;)
++ (FaceCRM * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 - (void)setDetectDuration:(NSInteger)seconds;
@@ -474,7 +474,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRMSDK *
 @class AVCaptureOutput;
 @class AVCaptureConnection;
 
-@interface FaceCRMSDK (SWIFT_EXTENSION(FaceCRM)) <AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM)) <AVCaptureVideoDataOutputSampleBufferDelegate>
 - (void)captureOutput:(AVCaptureOutput * _Nonnull)output didOutputSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer fromConnection:(AVCaptureConnection * _Nonnull)connection;
 @end
 

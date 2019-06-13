@@ -1,6 +1,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import "FaceLib.h"
 
 //! Project version number for eCRMSDK.
 FOUNDATION_EXPORT double eCRMSDKVersionNumber;
