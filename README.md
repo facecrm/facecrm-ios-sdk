@@ -58,7 +58,11 @@ ContainerView: an UIView in your UIViewController, is used to embed camera view.
 
 #### 2. Listen events
 #### Found face from live camera
-A face is found from live camera, prepare to send FaceCRM system for detect face.
+A face is found from live camera, prepare to send FaceCRM system for detect face. 
+
+Notice that you only found a face in this step, you do not know who this face is. This face will be sent to FaceCRM for detection.
+
+
 ```swift
 FaceCRM.shared.onFoundFace() { (face, fullImage) in
 }
@@ -68,14 +72,13 @@ face: UIImage contains a face is found in full image.
 #### Detect face successfully from FaceCRM system
 ```swift
 
-FaceCRM.shared.onDetectSuccess() { (face, fullImage, faceId, metaData) in
+FaceCRM.shared.onDetectSuccess() { (face, fullImage, model) in
 }
 ```
 face: UIImage contains a face is found in full image. 
 
-Face ID: a face's indentifier, was detected successfully from FaceCRM system. 
+Model: an object contains face 's information like: face ID (a face's indentifier, was detected successfully from FaceCRM system), age, gender, emotion, your custom metadata....
 
-Meta data: the embedded data of the detected face.
 
 #### Detect face failure from FaceCRM system
 ```swift
@@ -113,43 +116,78 @@ ContainerView: an UIView in your UIViewController, is used to embed camera view.
 
 #### 2. Capture a face for register.
 ```swift
-FaceCRM.shared.captureFace() { (face, fullImage) in
+FaceCRM.shared.captureFace() 
+```
+
+Listen event for capture face successfully:
+```swift
+FaceCRM.shared.onCapture { (cropImage, fullImage) in
 }
 ```
 face: UIImage contains a face is found in full image.
 
-#### 3. Register faces with FaceCRM system
-After captured faces, you can register all faces or register each face:
 
-##### Register all faces:
+#### 3. Register faces with FaceCRM system
+After captured faces, you can register all faces:
+
 ```swift
 FaceCRM.shared.registerFaces(faceArray)
 ```
 faceArray: face array is registered
 
-##### Register each face:
-```swift
-FaceCRM.shared.registerEachFace(face)
-```
-face: face is registered
+You need at least a face for register.
 
-With register each face, you need to call the finish function:
-```swift
-FaceCRM.shared.finishRegister()
-```
 
 #### 4. Listen register events
+Register process has 2 step: Upload all faces to server. Then, register these faces. You need upload successfully at least 1 face for continue the register step.
+
+You can listen events for both upload step and register step.
+
+##### Event upload each photo successfully:
 ```swift
 
-FaceCRM.shared.onRegister() { (face, status, message) in
+FaceCRM.shared.onUploadSuccess() { (face) in
 }
 ```
+face: face is uploaded successfully prepare to the register step
 
-face: UIImage contains a face, was sent to FaceCRM system for register. 
+##### Event upload each photo fail:
+```swift
+FaceCRM.shared.onUploadFail() { (face, code, message) in
+}
+```
+face: face is uploaded fail
 
-status: register's result code.
+code: upload's result code.
 
-message: register 's result message.
+message: upload's result message.
+
+##### Register all faces successfully:
+```swift
+
+FaceCRM.shared.onRegisterSuccess() { (faceArray, faceID) in
+}
+```
+faceArray: face array is registered
+
+faceID: a face's indentifier is registered successfully.
+
+
+
+##### Register all faces fail:
+
+```swift
+
+FaceCRM.shared.onRegisterFail() { (faceArray, code, message) in
+}
+```
+faceArray: face array is registered
+
+code: register's result code.
+
+message: register's result message.
+
+
 
 #### 5. Stop and remove camera
 ```swift
@@ -169,11 +207,46 @@ Camera view will show a rectangle bounds face. Default is always show. if you do
 FaceCRM.shared.enableShowFaceResult(false)
 ```
 
+#### Set rate (or the difficult level) for face detection. 
+Range is from 0% to 100%. Minimum (also default) should be 50% and maximum should be 90%.
+```swift
+FaceCRM.shared.setDetectRate(50)
+```
+With higher percentage, detection's algorithm is also more complex. You will be harder to detect a face but you can detect exactly who you are.
 
-## Sample
+With lower percentage, detection 's algorithm is also less complex. You will be easier to detect a face but this face can be confused between many different faces
+
+
+#### Set detection type
+When detecting successfully a face, you will receive a model. This model contains face's info. Default info is faceID and your custom metadata.
+
+You can get more other info like: age, gender, emotion (analyze from your detection face)
+```swift
+let type = [FaceCRM.DETECT_TYPE_AGE, FaceCRM.DETECT_TYPE_GENDER, FaceCRM.DETECT_TYPE_EMOTION]
+FaceCRM.shared.setDetectType(type)
+```
+
+#### Set CollectionId
+You can get collection id from FaceCRM system's cms
+```swift
+FaceCRM.shared.setCollectionId(3)
+```
+
+#### Set TagId
+You can get tag id from FaceCRM system's cms
+```swift
+FaceCRM.shared.setTagId(4)
+```
+
+#### Set your custom metadata
+You can set your custom metadata in the register step. You can get this info again in the detection step. You can set anything if you want like normal text, json, xml....
+```swift
+FaceCRM.shared.setRegisterMetaData("I am a developer. I am 18 years old")
+```
+
+## Sample 
 
 The sample app demonstrates the use of the FaceCRM iOS client library. The sample shows scenarios face detection and face registration. [See SAMPLE](https://github.com/facecrm/facecrm-ios-sample) for details.
 
 ## License
 The FaceCRM is released under the BSD 2 license. [See LICENSE](https://github.com/facecrm/facecrm-ios-sdk/blob/master/LICENSE) for details.
-

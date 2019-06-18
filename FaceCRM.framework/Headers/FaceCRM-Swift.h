@@ -189,42 +189,45 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma pop_macro("any")
 #endif
 
-@class UIImage;
 
-SWIFT_CLASS("_TtC7FaceCRM11APUserModel")
-@interface APUserModel : NSObject
-@property (nonatomic, copy) NSArray<UIImage *> * _Nonnull faces;
+SWIFT_CLASS("_TtC7FaceCRM11FCUserModel")
+@interface FCUserModel : NSObject
 @property (nonatomic, copy) NSString * _Nonnull faceId;
-@property (nonatomic, copy) NSString * _Nonnull metaData;
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull metaData;
+@property (nonatomic) NSInteger age;
+@property (nonatomic, copy) NSString * _Nonnull emotion;
+@property (nonatomic, copy) NSString * _Nonnull gender;
+@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull fullData;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class UIView;
 
 SWIFT_CLASS("_TtC7FaceCRM7FaceCRM")
 @interface FaceCRM : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRM * _Nonnull shared;)
 + (FaceCRM * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull DETECT_TYPE_EMOTION;)
++ (NSString * _Nonnull)DETECT_TYPE_EMOTION SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull DETECT_TYPE_AGE;)
++ (NSString * _Nonnull)DETECT_TYPE_AGE SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull DETECT_TYPE_GENDER;)
++ (NSString * _Nonnull)DETECT_TYPE_GENDER SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
-- (void)setDetectDuration:(NSInteger)seconds;
-- (void)enableShowFaceResult:(BOOL)showResult;
-- (void)setToken:(NSString * _Nonnull)token;
-- (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))event;
-- (void)onDetectFail:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, NSInteger, NSString * _Nonnull))event;
-- (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))event;
-- (void)startRegisterByCamera:(CGRect)frame :(UIView * _Nonnull)view;
-- (void)startDetectByCamera:(CGRect)frame :(UIView * _Nonnull)view;
-- (void)stopCamera;
-- (void)detectByImage:(UIImage * _Nonnull)image;
-- (void)onRegister:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
-- (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
-- (void)registerEachFace:(UIImage * _Nonnull)face;
-- (void)finishRegister;
-- (void)captureFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))completion;
 @end
 
 
+
+@class UIView;
+@class UIImage;
+
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
+- (void)startDetectByCamera:(CGRect)frame :(UIView * _Nonnull)view;
+- (void)stopCamera;
+- (void)startRegisterByCamera:(CGRect)frame :(UIView * _Nonnull)view;
+- (void)captureFace;
+- (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
+@end
 
 @class AVCaptureOutput;
 @class AVCaptureConnection;
@@ -236,8 +239,29 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRM * _N
 
 
 
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
+- (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))event;
+- (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, FCUserModel * _Nonnull))event;
+- (void)onDetectFail:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, NSInteger, NSString * _Nonnull))event;
+- (void)onCapture:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))completion;
+- (void)onUploadSuccess:(void (^ _Nonnull)(UIImage * _Nonnull))completion;
+- (void)onUploadFail:(void (^ _Nonnull)(UIImage * _Nonnull, NSInteger, NSString * _Nonnull))completion;
+- (void)onRegisterSuccess:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSString * _Nonnull))completion;
+- (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
+@end
 
 
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
+- (void)setToken:(NSString * _Nonnull)token;
+- (void)setAppId:(NSString * _Nonnull)appId;
+- (void)setScanFrequency:(NSInteger)seconds;
+- (void)enableShowFaceResult:(BOOL)showResult;
+- (void)setCollectionId:(NSInteger)collectionId;
+- (void)setTagId:(NSInteger)tagId;
+- (void)setDetectRate:(NSInteger)rate;
+- (void)setDetectType:(NSArray<NSString *> * _Nonnull)detectionType;
+- (void)setRegisterMetaData:(NSString * _Nonnull)metaData;
+@end
 
 #if __has_attribute(external_source_symbol)
 # pragma clang attribute pop
@@ -434,42 +458,45 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma pop_macro("any")
 #endif
 
-@class UIImage;
 
-SWIFT_CLASS("_TtC7FaceCRM11APUserModel")
-@interface APUserModel : NSObject
-@property (nonatomic, copy) NSArray<UIImage *> * _Nonnull faces;
+SWIFT_CLASS("_TtC7FaceCRM11FCUserModel")
+@interface FCUserModel : NSObject
 @property (nonatomic, copy) NSString * _Nonnull faceId;
-@property (nonatomic, copy) NSString * _Nonnull metaData;
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull metaData;
+@property (nonatomic) NSInteger age;
+@property (nonatomic, copy) NSString * _Nonnull emotion;
+@property (nonatomic, copy) NSString * _Nonnull gender;
+@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull fullData;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class UIView;
 
 SWIFT_CLASS("_TtC7FaceCRM7FaceCRM")
 @interface FaceCRM : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRM * _Nonnull shared;)
 + (FaceCRM * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull DETECT_TYPE_EMOTION;)
++ (NSString * _Nonnull)DETECT_TYPE_EMOTION SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull DETECT_TYPE_AGE;)
++ (NSString * _Nonnull)DETECT_TYPE_AGE SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull DETECT_TYPE_GENDER;)
++ (NSString * _Nonnull)DETECT_TYPE_GENDER SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
-- (void)setDetectDuration:(NSInteger)seconds;
-- (void)enableShowFaceResult:(BOOL)showResult;
-- (void)setToken:(NSString * _Nonnull)token;
-- (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))event;
-- (void)onDetectFail:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, NSInteger, NSString * _Nonnull))event;
-- (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))event;
-- (void)startRegisterByCamera:(CGRect)frame :(UIView * _Nonnull)view;
-- (void)startDetectByCamera:(CGRect)frame :(UIView * _Nonnull)view;
-- (void)stopCamera;
-- (void)detectByImage:(UIImage * _Nonnull)image;
-- (void)onRegister:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
-- (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
-- (void)registerEachFace:(UIImage * _Nonnull)face;
-- (void)finishRegister;
-- (void)captureFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))completion;
 @end
 
 
+
+@class UIView;
+@class UIImage;
+
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
+- (void)startDetectByCamera:(CGRect)frame :(UIView * _Nonnull)view;
+- (void)stopCamera;
+- (void)startRegisterByCamera:(CGRect)frame :(UIView * _Nonnull)view;
+- (void)captureFace;
+- (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
+@end
 
 @class AVCaptureOutput;
 @class AVCaptureConnection;
@@ -481,8 +508,29 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FaceCRM * _N
 
 
 
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
+- (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))event;
+- (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, FCUserModel * _Nonnull))event;
+- (void)onDetectFail:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, NSInteger, NSString * _Nonnull))event;
+- (void)onCapture:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))completion;
+- (void)onUploadSuccess:(void (^ _Nonnull)(UIImage * _Nonnull))completion;
+- (void)onUploadFail:(void (^ _Nonnull)(UIImage * _Nonnull, NSInteger, NSString * _Nonnull))completion;
+- (void)onRegisterSuccess:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSString * _Nonnull))completion;
+- (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
+@end
 
 
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
+- (void)setToken:(NSString * _Nonnull)token;
+- (void)setAppId:(NSString * _Nonnull)appId;
+- (void)setScanFrequency:(NSInteger)seconds;
+- (void)enableShowFaceResult:(BOOL)showResult;
+- (void)setCollectionId:(NSInteger)collectionId;
+- (void)setTagId:(NSInteger)tagId;
+- (void)setDetectRate:(NSInteger)rate;
+- (void)setDetectType:(NSArray<NSString *> * _Nonnull)detectionType;
+- (void)setRegisterMetaData:(NSString * _Nonnull)metaData;
+@end
 
 #if __has_attribute(external_source_symbol)
 # pragma clang attribute pop
