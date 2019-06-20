@@ -48,8 +48,15 @@ Implement in 3 steps:
 3. Stop and remove camera view in UIViewController if you do not want to continue detect.
 
 #### 1. Add camera and start to detect
+
+After setup camera successfully, SDK send to you a camera view's layer. 
+
+You need to set this layer's frame and add it to your UIViewController.
 ```swift
-FaceCRM.shared.startDetectByCamera(rect, containerView)
+FaceCRM.shared.startDetectByCamera() { (cameraView) in
+cameraView.frame = rect
+self.view.layer.addSublayer(cameraView)
+}
 ```
 rect: camera view's frame.
 
@@ -107,8 +114,15 @@ Implement in 5 steps:
 3. Stop and remove camera view in UIViewController if you do not want to continue register.
 
 #### 1. Add camera and start to capture faces
+
+After setup camera successfully, SDK send to you a camera view's layer. 
+
+You need to set this layer's frame and add it to your UIViewController.
 ```swift
-FaceCRM.shared.startRegisterByCamera(rect, containerView)
+FaceCRM.shared.startRegisterByCamera() { (cameraView) in
+cameraView.frame = rect
+self.view.layer.addSublayer(cameraView)
+}
 ```
 rect: camera view 's frame.
 
@@ -121,7 +135,7 @@ FaceCRM.shared.captureFace()
 
 Listen event for capture face successfully:
 ```swift
-FaceCRM.shared.onCapture { (cropImage, fullImage) in
+FaceCRM.shared.onCapture() { (cropImage, fullImage) in
 }
 ```
 face: UIImage contains a face is found in full image.
@@ -194,20 +208,14 @@ message: register's result message.
 FaceCRM.shared.stopCamera()
 ```
 
-### Config
-#### Set camera's scan frequency
+### Config for camera
+#### 1. Set camera's scan frequency
 Camera view will scan to found face each 1 second. Default ( also minimum) is 1 second.
 ```swift
 FaceCRM.shared.setScanFrequency(1.5) // 1.5 seconds
 ```
 
-#### Set whether show face's rectangle or not, when camera view scan and found a face.
-Camera view will show a rectangle bounds face. Default is always show. if you do not want to show, you can turn off.
-```swift
-FaceCRM.shared.enableShowFaceResult(false)
-```
-
-#### Set rate (or the difficult level) for face detection. 
+#### 2. Set rate (or the difficult level) for face detection 
 Range is from 0% to 100%. Minimum (also default) should be 50% and maximum should be 90%.
 ```swift
 FaceCRM.shared.setDetectRate(50)
@@ -217,7 +225,42 @@ With higher percentage, detection's algorithm is also more complex. You will be 
 With lower percentage, detection 's algorithm is also less complex. You will be easier to detect a face but this face can be confused between many different faces
 
 
-#### Set detection type
+#### 3. Set whether show face's rectangle or not 
+
+when camera view scan and found a face, camera view will show a rectangle bounds face. 
+
+Default is always show. if you do not want to show, you can turn off.
+```swift
+FaceCRM.shared.enableShowFaceResult(false)
+```
+
+#### 4. Set border's color and width in face's rectangle 
+when camera view scan and found a face, camera view will show a rectangle bounds face.
+
+Default border's color is blue and border's width is 2 pixel. You can change border's info.
+```swift
+FaceCRM.shared.setFaceRectangle(UIColor.green, 1)
+```
+#### 5. Change camera's position between front and rear 
+After setup camera successfully, camera's position is front like default. 
+
+You can update this position by switch action.
+
+```swift
+FaceCRM.shared.switchCameraPosition()
+```
+You can update this position by setup action.
+```swift
+FaceCRM.shared.setCameraPosition(FaceCRM.CAMERA_POSITION_FRONT)
+FaceCRM.shared.setCameraPosition(FaceCRM.CAMERA_POSITION_REAR)
+```
+You can get current position.
+```swift
+let position = FaceCRM.shared.getCurrentCameraPosition()
+```
+
+### Config for detection and registration
+#### 1. Set detection type
 When detecting successfully a face, you will receive a model. This model contains face's info. Default info is faceID and your custom metadata.
 
 You can get more other info like: age, gender, emotion (analyze from your detection face)
@@ -226,19 +269,24 @@ let type = [FaceCRM.DETECT_TYPE_AGE, FaceCRM.DETECT_TYPE_GENDER, FaceCRM.DETECT_
 FaceCRM.shared.setDetectType(type)
 ```
 
-#### Set CollectionId
-You can get collection id from FaceCRM system's cms
+#### 2. Set CollectionId
+Collection's mean is a group that you joined. It maybe your country, company, club, school, class, clan...
+
+You can get collection id from FaceCRM system's CMS and set to SDK for both detection step and registration step.
 ```swift
 FaceCRM.shared.setCollectionId(3)
 ```
 
-#### Set TagId
-You can get tag id from FaceCRM system's cms
+#### 3. Set TagId
+Tag's mean is your personal information. It maybe your age, gender, favorite, language, work...
+
+
+You can get tag id from FaceCRM system's CMS and set to SDK for both detection step and registration step.
 ```swift
 FaceCRM.shared.setTagId(4)
 ```
 
-#### Set your custom metadata
+#### 4. Set your custom metadata
 You can set your custom metadata in the register step. You can get this info again in the detection step. You can set anything if you want like normal text, json, xml....
 ```swift
 FaceCRM.shared.setRegisterMetaData("I am a developer. I am 18 years old")
@@ -250,3 +298,4 @@ The sample app demonstrates the use of the FaceCRM iOS client library. The sampl
 
 ## License
 The FaceCRM is released under the BSD 2 license. [See LICENSE](https://github.com/facecrm/facecrm-ios-sdk/blob/master/LICENSE) for details.
+

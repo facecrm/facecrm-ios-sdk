@@ -14,6 +14,6 @@ Pod::Spec.new do |s|
   s.swift_version    = '4.2'
   s.ios.vendored_frameworks = 'FaceCRM.framework'
 
-  s.dependency 'Alamofire'
+  #s.dependency 'Alamofire'
 
 end

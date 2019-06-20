@@ -212,21 +212,26 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 + (NSString * _Nonnull)DETECT_TYPE_AGE SWIFT_WARN_UNUSED_RESULT;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull DETECT_TYPE_GENDER;)
 + (NSString * _Nonnull)DETECT_TYPE_GENDER SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POSITION_FRONT;)
++ (NSInteger)CAMERA_POSITION_FRONT SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POSITION_REAR;)
++ (NSInteger)CAMERA_POSITION_REAR SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
 
 
 
-@class UIView;
+@class CALayer;
 @class UIImage;
 
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
-- (void)startDetectByCamera:(CGRect)frame :(UIView * _Nonnull)view;
+- (void)startDetectByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
 - (void)stopCamera;
-- (void)startRegisterByCamera:(CGRect)frame :(UIView * _Nonnull)view;
+- (void)startRegisterByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
 - (void)captureFace;
 - (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
+- (NSInteger)getCurrentCameraPosition SWIFT_WARN_UNUSED_RESULT;
 @end
 
 @class AVCaptureOutput;
@@ -250,17 +255,21 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 - (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
 @end
 
+@class UIColor;
 
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
 - (void)setToken:(NSString * _Nonnull)token;
 - (void)setAppId:(NSString * _Nonnull)appId;
-- (void)setScanFrequency:(NSInteger)seconds;
-- (void)enableShowFaceResult:(BOOL)showResult;
 - (void)setCollectionId:(NSInteger)collectionId;
 - (void)setTagId:(NSInteger)tagId;
 - (void)setDetectRate:(NSInteger)rate;
 - (void)setDetectType:(NSArray<NSString *> * _Nonnull)detectionType;
 - (void)setRegisterMetaData:(NSString * _Nonnull)metaData;
+- (void)switchCameraPosition;
+- (void)setCameraPosition:(NSInteger)position;
+- (void)enableShowFaceResult:(BOOL)showResult;
+- (void)setFaceRectangle:(UIColor * _Nonnull)color :(CGFloat)width;
+- (void)setScanFrequency:(NSInteger)seconds;
 @end
 
 #if __has_attribute(external_source_symbol)
@@ -481,21 +490,26 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 + (NSString * _Nonnull)DETECT_TYPE_AGE SWIFT_WARN_UNUSED_RESULT;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull DETECT_TYPE_GENDER;)
 + (NSString * _Nonnull)DETECT_TYPE_GENDER SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POSITION_FRONT;)
++ (NSInteger)CAMERA_POSITION_FRONT SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POSITION_REAR;)
++ (NSInteger)CAMERA_POSITION_REAR SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
 
 
 
-@class UIView;
+@class CALayer;
 @class UIImage;
 
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
-- (void)startDetectByCamera:(CGRect)frame :(UIView * _Nonnull)view;
+- (void)startDetectByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
 - (void)stopCamera;
-- (void)startRegisterByCamera:(CGRect)frame :(UIView * _Nonnull)view;
+- (void)startRegisterByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
 - (void)captureFace;
 - (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
+- (NSInteger)getCurrentCameraPosition SWIFT_WARN_UNUSED_RESULT;
 @end
 
 @class AVCaptureOutput;
@@ -519,17 +533,21 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _No
 - (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
 @end
 
+@class UIColor;
 
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
 - (void)setToken:(NSString * _Nonnull)token;
 - (void)setAppId:(NSString * _Nonnull)appId;
-- (void)setScanFrequency:(NSInteger)seconds;
-- (void)enableShowFaceResult:(BOOL)showResult;
 - (void)setCollectionId:(NSInteger)collectionId;
 - (void)setTagId:(NSInteger)tagId;
 - (void)setDetectRate:(NSInteger)rate;
 - (void)setDetectType:(NSArray<NSString *> * _Nonnull)detectionType;
 - (void)setRegisterMetaData:(NSString * _Nonnull)metaData;
+- (void)switchCameraPosition;
+- (void)setCameraPosition:(NSInteger)position;
+- (void)enableShowFaceResult:(BOOL)showResult;
+- (void)setFaceRectangle:(UIColor * _Nonnull)color :(CGFloat)width;
+- (void)setScanFrequency:(NSInteger)seconds;
 @end
 
 #if __has_attribute(external_source_symbol)
