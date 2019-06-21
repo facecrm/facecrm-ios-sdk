@@ -287,9 +287,20 @@ FaceCRM.shared.setTagId(4)
 ```
 
 #### 4. Set your custom metadata
-You can set your custom metadata in the register step. You can get this info again in the detection step. You can set anything if you want like normal text, json, xml....
+You can set your custom metadata in the register step.
+
+* NOTICE: metadata needs the json format.
+
 ```swift
-FaceCRM.shared.setRegisterMetaData("I am a developer. I am 18 years old")
+FaceCRM.shared.setMetaData("{\"name\":\"Michael\"}")
+```
+
+You can create a string with json format manually. Beside, you can also create this string from a NSMutableDictionary:
+
+```swift
+let dictionary = NSMutableDictionary()
+dict.setValue("Michael", forKey: "name")
+FaceCRM.shared.setMetaDataFromDict(dict)
 ```
 
 ## Sample 
@@ -298,4 +309,5 @@ The sample app demonstrates the use of the FaceCRM iOS client library. The sampl
 
 ## License
 The FaceCRM is released under the BSD 2 license. [See LICENSE](https://github.com/facecrm/facecrm-ios-sdk/blob/master/LICENSE) for details.
+
 

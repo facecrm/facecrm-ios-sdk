@@ -194,7 +194,7 @@ SWIFT_CLASS("_TtC7FaceCRM11FCUserModel")
 @interface FCUserModel : NSObject
 @property (nonatomic, copy) NSString * _Nonnull faceId;
 @property (nonatomic, copy) NSArray<NSString *> * _Nonnull metaData;
-@property (nonatomic) NSInteger age;
+@property (nonatomic, copy) NSString * _Nonnull age;
 @property (nonatomic, copy) NSString * _Nonnull emotion;
 @property (nonatomic, copy) NSString * _Nonnull gender;
 @property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull fullData;
@@ -242,8 +242,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 @end
 
 
-
-
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
 - (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))event;
 - (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, FCUserModel * _Nonnull))event;
@@ -255,6 +253,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 - (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
 @end
 
+
+
+@class NSMutableDictionary;
 @class UIColor;
 
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
@@ -264,7 +265,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 - (void)setTagId:(NSInteger)tagId;
 - (void)setDetectRate:(NSInteger)rate;
 - (void)setDetectType:(NSArray<NSString *> * _Nonnull)detectionType;
-- (void)setRegisterMetaData:(NSString * _Nonnull)metaData;
+- (void)setMetaData:(NSString * _Nonnull)metaData;
+- (void)setMetaDataFromDict:(NSMutableDictionary * _Nonnull)dict;
 - (void)switchCameraPosition;
 - (void)setCameraPosition:(NSInteger)position;
 - (void)enableShowFaceResult:(BOOL)showResult;
@@ -472,7 +474,7 @@ SWIFT_CLASS("_TtC7FaceCRM11FCUserModel")
 @interface FCUserModel : NSObject
 @property (nonatomic, copy) NSString * _Nonnull faceId;
 @property (nonatomic, copy) NSArray<NSString *> * _Nonnull metaData;
-@property (nonatomic) NSInteger age;
+@property (nonatomic, copy) NSString * _Nonnull age;
 @property (nonatomic, copy) NSString * _Nonnull emotion;
 @property (nonatomic, copy) NSString * _Nonnull gender;
 @property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull fullData;
@@ -520,8 +522,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 @end
 
 
-
-
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
 - (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))event;
 - (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, FCUserModel * _Nonnull))event;
@@ -533,6 +533,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 - (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
 @end
 
+
+
+@class NSMutableDictionary;
 @class UIColor;
 
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
@@ -542,7 +545,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 - (void)setTagId:(NSInteger)tagId;
 - (void)setDetectRate:(NSInteger)rate;
 - (void)setDetectType:(NSArray<NSString *> * _Nonnull)detectionType;
-- (void)setRegisterMetaData:(NSString * _Nonnull)metaData;
+- (void)setMetaData:(NSString * _Nonnull)metaData;
+- (void)setMetaDataFromDict:(NSMutableDictionary * _Nonnull)dict;
 - (void)switchCameraPosition;
 - (void)setCameraPosition:(NSInteger)position;
 - (void)enableShowFaceResult:(BOOL)showResult;
