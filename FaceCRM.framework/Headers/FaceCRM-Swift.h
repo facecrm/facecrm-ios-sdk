@@ -171,6 +171,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @import AVFoundation;
 @import CoreGraphics;
 @import CoreMedia;
+@import Foundation;
 @import ObjectiveC;
 #endif
 
@@ -189,16 +190,32 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma pop_macro("any")
 #endif
 
+@class UIImage;
+@class FCUserModel;
+
+SWIFT_CLASS("_TtC7FaceCRM12FCFaceResult")
+@interface FCFaceResult : NSObject
+@property (nonatomic, strong) UIImage * _Nonnull image;
+@property (nonatomic, strong) FCUserModel * _Nonnull model;
+@property (nonatomic) BOOL isSuccess;
+@property (nonatomic) NSInteger status;
+@property (nonatomic, copy) NSString * _Nonnull message;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 
 SWIFT_CLASS("_TtC7FaceCRM11FCUserModel")
 @interface FCUserModel : NSObject
 @property (nonatomic, copy) NSString * _Nonnull faceId;
-@property (nonatomic, copy) NSArray<NSString *> * _Nonnull metaData;
 @property (nonatomic, copy) NSString * _Nonnull age;
 @property (nonatomic, copy) NSString * _Nonnull emotion;
 @property (nonatomic, copy) NSString * _Nonnull gender;
-@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull fullData;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSString * _Nonnull detectTime;
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull metaData;
+@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull jsonData;
+@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull historyData;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
 
 
@@ -216,23 +233,15 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 + (NSInteger)CAMERA_POSITION_FRONT SWIFT_WARN_UNUSED_RESULT;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POSITION_REAR;)
 + (NSInteger)CAMERA_POSITION_REAR SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger LIBRARY_OPENCV;)
++ (NSInteger)LIBRARY_OPENCV SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger LIBRARY_APPLE_VISION;)
++ (NSInteger)LIBRARY_APPLE_VISION SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
 
 
-
-@class CALayer;
-@class UIImage;
-
-@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
-- (void)startDetectByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
-- (void)stopCamera;
-- (void)startRegisterByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
-- (void)captureFace;
-- (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
-- (NSInteger)getCurrentCameraPosition SWIFT_WARN_UNUSED_RESULT;
-@end
 
 @class AVCaptureOutput;
 @class AVCaptureConnection;
@@ -242,15 +251,31 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 @end
 
 
+
+
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
-- (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))event;
-- (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, FCUserModel * _Nonnull))event;
-- (void)onDetectFail:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, NSInteger, NSString * _Nonnull))event;
+- (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<UIImage *> * _Nonnull))event;
+- (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<FCFaceResult *> * _Nonnull))event;
+- (void)onDetectFail:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<FCFaceResult *> * _Nonnull))event;
 - (void)onCapture:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))completion;
 - (void)onUploadSuccess:(void (^ _Nonnull)(UIImage * _Nonnull))completion;
 - (void)onUploadFail:(void (^ _Nonnull)(UIImage * _Nonnull, NSInteger, NSString * _Nonnull))completion;
 - (void)onRegisterSuccess:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSString * _Nonnull))completion;
 - (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
+@end
+
+@class CALayer;
+
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
+- (void)startDetectByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
+- (void)stopCamera;
+- (void)startRegisterByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
+- (void)captureFace;
+- (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
+- (NSInteger)getCurrentCameraPosition SWIFT_WARN_UNUSED_RESULT;
+- (void)getAllOnlineHistory:(NSString * _Nonnull)faceId :(void (^ _Nonnull)(NSInteger, NSString * _Nonnull, NSArray<FCUserModel *> * _Nullable))completion;
+- (void)getOnlineHistory:(NSString * _Nonnull)faceId :(NSDate * _Nullable)from :(NSDate * _Nullable)to :(void (^ _Nonnull)(NSInteger, NSString * _Nonnull, NSArray<FCUserModel *> * _Nullable))completion;
+- (void)getOfflineHistory:(void (^ _Nonnull)(NSDictionary<NSString *, NSArray<FCUserModel *> *> * _Nullable))completion;
 @end
 
 
@@ -272,6 +297,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 - (void)enableShowFaceResult:(BOOL)showResult;
 - (void)setFaceRectangle:(UIColor * _Nonnull)color :(CGFloat)width;
 - (void)setScanFrequency:(NSInteger)seconds;
+- (void)setDetectOneTime:(BOOL)oneTime;
+- (void)setDetectLibrary:(NSInteger)lib;
 @end
 
 #if __has_attribute(external_source_symbol)
@@ -451,6 +478,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @import AVFoundation;
 @import CoreGraphics;
 @import CoreMedia;
+@import Foundation;
 @import ObjectiveC;
 #endif
 
@@ -469,16 +497,32 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma pop_macro("any")
 #endif
 
+@class UIImage;
+@class FCUserModel;
+
+SWIFT_CLASS("_TtC7FaceCRM12FCFaceResult")
+@interface FCFaceResult : NSObject
+@property (nonatomic, strong) UIImage * _Nonnull image;
+@property (nonatomic, strong) FCUserModel * _Nonnull model;
+@property (nonatomic) BOOL isSuccess;
+@property (nonatomic) NSInteger status;
+@property (nonatomic, copy) NSString * _Nonnull message;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 
 SWIFT_CLASS("_TtC7FaceCRM11FCUserModel")
 @interface FCUserModel : NSObject
 @property (nonatomic, copy) NSString * _Nonnull faceId;
-@property (nonatomic, copy) NSArray<NSString *> * _Nonnull metaData;
 @property (nonatomic, copy) NSString * _Nonnull age;
 @property (nonatomic, copy) NSString * _Nonnull emotion;
 @property (nonatomic, copy) NSString * _Nonnull gender;
-@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull fullData;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, copy) NSString * _Nonnull detectTime;
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull metaData;
+@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull jsonData;
+@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nonnull historyData;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
 
 
@@ -496,23 +540,15 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 + (NSInteger)CAMERA_POSITION_FRONT SWIFT_WARN_UNUSED_RESULT;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POSITION_REAR;)
 + (NSInteger)CAMERA_POSITION_REAR SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger LIBRARY_OPENCV;)
++ (NSInteger)LIBRARY_OPENCV SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger LIBRARY_APPLE_VISION;)
++ (NSInteger)LIBRARY_APPLE_VISION SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
 
 
-
-@class CALayer;
-@class UIImage;
-
-@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
-- (void)startDetectByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
-- (void)stopCamera;
-- (void)startRegisterByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
-- (void)captureFace;
-- (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
-- (NSInteger)getCurrentCameraPosition SWIFT_WARN_UNUSED_RESULT;
-@end
 
 @class AVCaptureOutput;
 @class AVCaptureConnection;
@@ -522,15 +558,31 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 @end
 
 
+
+
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
-- (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))event;
-- (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, FCUserModel * _Nonnull))event;
-- (void)onDetectFail:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull, NSInteger, NSString * _Nonnull))event;
+- (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<UIImage *> * _Nonnull))event;
+- (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<FCFaceResult *> * _Nonnull))event;
+- (void)onDetectFail:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<FCFaceResult *> * _Nonnull))event;
 - (void)onCapture:(void (^ _Nonnull)(UIImage * _Nonnull, UIImage * _Nonnull))completion;
 - (void)onUploadSuccess:(void (^ _Nonnull)(UIImage * _Nonnull))completion;
 - (void)onUploadFail:(void (^ _Nonnull)(UIImage * _Nonnull, NSInteger, NSString * _Nonnull))completion;
 - (void)onRegisterSuccess:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSString * _Nonnull))completion;
 - (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
+@end
+
+@class CALayer;
+
+@interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
+- (void)startDetectByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
+- (void)stopCamera;
+- (void)startRegisterByCamera:(void (^ _Nonnull)(CALayer * _Nonnull))completion;
+- (void)captureFace;
+- (void)registerFaces:(NSArray<UIImage *> * _Nonnull)faces;
+- (NSInteger)getCurrentCameraPosition SWIFT_WARN_UNUSED_RESULT;
+- (void)getAllOnlineHistory:(NSString * _Nonnull)faceId :(void (^ _Nonnull)(NSInteger, NSString * _Nonnull, NSArray<FCUserModel *> * _Nullable))completion;
+- (void)getOnlineHistory:(NSString * _Nonnull)faceId :(NSDate * _Nullable)from :(NSDate * _Nullable)to :(void (^ _Nonnull)(NSInteger, NSString * _Nonnull, NSArray<FCUserModel *> * _Nullable))completion;
+- (void)getOfflineHistory:(void (^ _Nonnull)(NSDictionary<NSString *, NSArray<FCUserModel *> *> * _Nullable))completion;
 @end
 
 
@@ -552,6 +604,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger CAMERA_POS
 - (void)enableShowFaceResult:(BOOL)showResult;
 - (void)setFaceRectangle:(UIColor * _Nonnull)color :(CGFloat)width;
 - (void)setScanFrequency:(NSInteger)seconds;
+- (void)setDetectOneTime:(BOOL)oneTime;
+- (void)setDetectLibrary:(NSInteger)lib;
 @end
 
 #if __has_attribute(external_source_symbol)
