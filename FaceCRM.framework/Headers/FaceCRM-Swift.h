@@ -251,8 +251,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger LIBRARY_AP
 @end
 
 
-
-
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
 - (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<UIImage *> * _Nonnull))event;
 - (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<FCFaceResult *> * _Nonnull))event;
@@ -263,6 +261,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger LIBRARY_AP
 - (void)onRegisterSuccess:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSString * _Nonnull))completion;
 - (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
 @end
+
+
 
 @class CALayer;
 
@@ -558,8 +558,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger LIBRARY_AP
 @end
 
 
-
-
 @interface FaceCRM (SWIFT_EXTENSION(FaceCRM))
 - (void)onFoundFace:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<UIImage *> * _Nonnull))event;
 - (void)onDetectSuccess:(void (^ _Nonnull)(UIImage * _Nonnull, NSArray<FCFaceResult *> * _Nonnull))event;
@@ -570,6 +568,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) NSInteger LIBRARY_AP
 - (void)onRegisterSuccess:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSString * _Nonnull))completion;
 - (void)onRegisterFail:(void (^ _Nonnull)(NSArray<UIImage *> * _Nonnull, NSInteger, NSString * _Nonnull))completion;
 @end
+
+
 
 @class CALayer;
 
